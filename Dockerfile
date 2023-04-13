@@ -1,7 +1,7 @@
 FROM samiulislam807/amazonlinux-php-apache:latest
 
 # Install necessary packages and dependencies
-RUN apt-get update && apt-get install -y \
+RUN yum update && yum install -y \
     git \
     unzip \
     libpq-dev \
@@ -20,7 +20,7 @@ ENV MYSQL_DATABASE=""
 COPY . /var/www/html/
 
 # Install MySQL client
-RUN apt-get update && apt-get install -y default-mysql-client
+RUN yum update && yum install -y default-mysql-client
 
 # Add startup script
 COPY startup.sh /usr/local/bin/startup.sh
