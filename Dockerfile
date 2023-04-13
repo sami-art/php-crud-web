@@ -3,13 +3,22 @@ FROM samiulislam807/amazonlinux-php-apache:latest
 # Install necessary packages and dependencies
 RUN yum update && \
     yum install -y \
+    httpd \
+    php \
+    php-devel \
     git \
     unzip \
     postgresql-devel \
     libpng-devel \
     libjpeg-devel \
-    freetype-devel \
-    && docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd
+    freetype-devel
+
+# Enable necessary Apache modules
+RUN echo "LoadModule rewrite_module modules/mod_rewrite.so" >> /etc/httpd/conf/httpd.conf && \
+    echo "LoadModule headers_module modules/mod_headers.so" >> /etc/httpd/conf/httpd.conf
+
+# Install necessary PHP extensions
+RUN docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd
 
 # Set environment variables for MySQL connection
 ENV MYSQL_HOST=""
