@@ -5,7 +5,7 @@ RUN yum update && \
     yum install -y \
     git \
     unzip \
-    libpqxx-devel \
+    postgresql-devel \
     libpng-devel \
     libjpeg-devel \
     freetype-devel \
