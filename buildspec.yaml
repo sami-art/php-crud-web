@@ -3,14 +3,14 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y5b9z8b9
+      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 210953236598.dkr.ecr.us-west-2.amazonaws.com
   build:
     commands:
-      - docker build --no-cache -t sui-crud-web .
+      - docker build -t sui-crud-web .
   post_build:
     commands:
-      - docker tag sui-crud-web:latest public.ecr.aws/y5b9z8b9/sui-crud-web:latest
-      - docker push public.ecr.aws/y5b9z8b9/sui-crud-web:latest
+      - docker tag sui-crud-web:latest 210953236598.dkr.ecr.us-west-2.amazonaws.com/sui-crud-web:latest
+      - docker push 210953236598.dkr.ecr.us-west-2.amazonaws.com/sui-crud-web:latest
       - yum install jq -y
       - ContainerName="php-web"
       - ImageURI=$(cat imageDetail.json | jq -r '.ImageURI')
