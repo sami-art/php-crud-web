@@ -6,7 +6,7 @@ phases:
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 210953236598.dkr.ecr.us-west-2.amazonaws.com
   build:
     commands:
-      - docker build -t sui-crud-web .
+      - docker build --no-cache -t sui-crud-web:latest .
   post_build:
     commands:
       - docker tag sui-crud-web:latest 210953236598.dkr.ecr.us-west-2.amazonaws.com/sui-crud-web:latest
