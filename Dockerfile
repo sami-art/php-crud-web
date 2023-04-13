@@ -1,7 +1,8 @@
-FROM samiulislam807/amazonlinux-php-apache:latest
+FROM FROM ubuntu:latest
 
 # Install necessary packages and dependencies
 RUN apt-get update && apt-get install -y \
+    apache2 php \
     git \
     unzip \
     libpq-dev \
