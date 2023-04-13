@@ -1,7 +1,11 @@
 FROM ubuntu:latest
 
+ENV TZ=Asia/Kolkata \
+    DEBIAN_FRONTEND=noninteractive
+
 # Install necessary packages and dependencies
 RUN apt-get update && apt-get install -y \
+    tzdata \
     apache2 php \
     git \
     unzip \
