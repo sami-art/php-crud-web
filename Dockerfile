@@ -1,13 +1,14 @@
 FROM samiulislam807/amazonlinux-php-apache:latest
 
 # Install necessary packages and dependencies
-RUN yum update && yum install -y \
+RUN yum update && \
+    yum install -y \
     git \
     unzip \
-    libpq-dev \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
+    libpqxx-devel \
+    libpng-devel \
+    libjpeg-devel \
+    freetype-devel \
     && docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd
 
 # Set environment variables for MySQL connection
