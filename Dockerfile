@@ -1,24 +1,15 @@
-FROM samiulislam807/amazonlinux-php-apache:latest
+FROM FROM ubuntu:latest
 
 # Install necessary packages and dependencies
-RUN yum update && \
-    yum install -y \
-    httpd \
-    php \
-    php-devel \
+RUN apt-get update && apt-get install -y \
+    apache2 php \
     git \
     unzip \
-    postgresql-devel \
-    libpng-devel \
-    libjpeg-devel \
-    freetype-devel
-
-# Enable necessary Apache modules
-RUN echo "LoadModule rewrite_module modules/mod_rewrite.so" >> /etc/httpd/conf/httpd.conf && \
-    echo "LoadModule headers_module modules/mod_headers.so" >> /etc/httpd/conf/httpd.conf
-
-# Install necessary PHP extensions
-RUN docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd
+    libpq-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    && docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd
 
 # Set environment variables for MySQL connection
 ENV MYSQL_HOST=""
@@ -30,7 +21,7 @@ ENV MYSQL_DATABASE=""
 COPY . /var/www/html/
 
 # Install MySQL client
-RUN yum update && yum install -y default-mysql-client
+RUN apt-get update && apt-get install -y default-mysql-client
 
 # Add startup script
 COPY startup.sh /usr/local/bin/startup.sh
