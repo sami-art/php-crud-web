@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
-    php-dev\
+    php-dev \
+    php-pear \
     && docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd \
     && apt-get clean \
     && apt-get autoclean \
