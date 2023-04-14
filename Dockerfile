@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:5.6.38-apache
 
 # Install necessary packages and dependencies
 RUN apt-get update && apt-get install -y \
