@@ -1,4 +1,4 @@
-FROM samiulislam807/base-image-php-apache:latest
+FROM php:5.6-apache
 
 # Install necessary packages and dependencies
 RUN apt-get update && apt-get install -y \
