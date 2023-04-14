@@ -1,19 +1,19 @@
-FROM ubuntu:latest
-
-ENV TZ=Asia/Kolkata \
-    DEBIAN_FRONTEND=noninteractive
+FROM samiulislam807/base-image-php-apache:latest
 
 # Install necessary packages and dependencies
 RUN apt-get update && apt-get install -y \
-    tzdata \
-    apache2 php \
     git \
     unzip \
+    libzip-dev \
     libpq-dev \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
-    && docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd
+    && docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd \
+    && apt-get clean \
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables for MySQL connection
 ENV MYSQL_HOST=""
