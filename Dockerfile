@@ -1,10 +1,9 @@
-FROM public.ecr.aws/docker/library/ubuntu:latest
+FROM public.ecr.aws/amazonlinux/amazonlinux:2
 
 # Update packages and install necessary dependencies #php7.4-mysql
-RUN apt-get update \
-    && apt-get install -y apache2 php7.4 libapache2-mod-php7.4\   
-    && apt-get install -y default-mysql-client \
-    apt-get clean && \
+RUN yum update \
+    && yum install -y apache2 php7.4 libapache2-mod-php7.4\   
+    && yum install -y default-mysql-client \
     rm -rf /var/lib/apt/lists/*
 
 # Enable Apache mod_rewrite
