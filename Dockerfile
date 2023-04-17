@@ -4,7 +4,6 @@ FROM public.ecr.aws/amazonlinux/amazonlinux:2
 RUN yum update -y \
     && yum install -y httpd php php-mysqlnd \
     && yum install -y mysql \
-    && yum install -y apache2 \
     && rm -rf /var/cache/yum/*
 
 # Enable Apache mod_rewrite
