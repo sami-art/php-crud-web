@@ -29,7 +29,7 @@ RUN chmod +x /usr/local/bin/startup.sh
 RUN sed -i 's/^<VirtualHost \*:80>$/<VirtualHost \*:8080>/' /etc/httpd/conf/httpd.conf   # update the port number here as well
 
 # Expose port 8080
-EXPOSE 8080   # update the port number here as well
+EXPOSE 8080  
 
 # Start the Apache web server and run startup script
 CMD ["/usr/local/bin/startup.sh"]
