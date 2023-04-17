@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/php:8.2-alpine3.16
+FROM public.ecr.aws/docker/library/php:7.2-apache
 
 # Update packages and install necessary dependencies
 RUN apt-get update \
