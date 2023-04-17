@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM public.ecr.aws/lts/ubuntu:latest
 
 # Update packages and install necessary dependencies
 RUN apt-get update \
