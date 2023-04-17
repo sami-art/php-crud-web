@@ -1,13 +1,16 @@
 FROM public.ecr.aws/amazonlinux/amazonlinux:2
 
-# Update packages and install necessary dependencies #php7.4-mysql
-RUN yum update \
-    && yum install -y apache2 php7.4 libapache2-mod-php7.4\   
-    && yum install -y default-mysql-client \
-    rm -rf /var/lib/apt/lists/*
+# Update packages and install necessary dependencies
+RUN yum update -y \
+    && yum install -y httpd php php-mysqlnd \
+    && yum install -y mysql \
+    && rm -rf /var/cache/yum/*
 
 # Enable Apache mod_rewrite
-RUN a2enmod rewrite
+RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/httpd/conf/httpd.conf \
+    && echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf \
+    && echo "Listen 80" >> /etc/httpd/conf/httpd.conf \
+    && chown apache:apache /var/www/html/ -R
 
 # Set environment variables for MySQL connection
 ENV MYSQL_HOST=""
@@ -27,3 +30,4 @@ EXPOSE 80
 
 # Start the Apache web server and run startup script
 CMD ["/usr/local/bin/startup.sh"]
+
