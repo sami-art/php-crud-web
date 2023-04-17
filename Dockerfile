@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lts/ubuntu:latest
+FROM public.ecr.aws/docker/library/php:8.2-alpine3.16
 
 # Update packages and install necessary dependencies
 RUN apt-get update \
