@@ -9,7 +9,7 @@ RUN yum update -y \
 # Enable Apache mod_rewrite
 RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/httpd/conf/httpd.conf \
     && echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf \
-    && echo "Listen 80" >> /etc/httpd/conf/httpd.conf \
+    && echo "Listen 8080" >> /etc/httpd/conf/httpd.conf \   # update the port number here
     && chown apache:apache /var/www/html/ -R
 
 # Set environment variables for MySQL connection
@@ -25,12 +25,10 @@ COPY . /var/www/html/
 COPY startup.sh /usr/local/bin/startup.sh
 RUN chmod +x /usr/local/bin/startup.sh
 
-RUN sed -i 's/^Listen 80$/Listen 8080/' /etc/httpd/conf/httpd.conf
-RUN sed -i 's/^<VirtualHost \*:80>$/<VirtualHost \*:8080>/' /etc/httpd/conf/httpd.conf
+RUN sed -i 's/^<VirtualHost \*:80>$/<VirtualHost \*:8080>/' /etc/httpd/conf/httpd.conf   # update the port number here as well
 
-# Expose port 80
-EXPOSE 80
+# Expose port 8080
+EXPOSE 8080   # update the port number here as well
 
 # Start the Apache web server and run startup script
 CMD ["/usr/local/bin/startup.sh"]
-
