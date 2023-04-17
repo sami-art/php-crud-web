@@ -9,8 +9,9 @@ RUN yum update -y \
 # Enable Apache mod_rewrite
 RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/httpd/conf/httpd.conf \
     && echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf \
-    && echo "Listen 8080" >> /etc/httpd/conf/httpd.conf \   # update the port number here
+    && echo "Listen 8080" >> /etc/httpd/conf/httpd.conf \
     && chown apache:apache /var/www/html/ -R
+
 
 # Set environment variables for MySQL connection
 ENV MYSQL_HOST=""
