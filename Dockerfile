@@ -25,6 +25,9 @@ COPY . /var/www/html/
 COPY startup.sh /usr/local/bin/startup.sh
 RUN chmod +x /usr/local/bin/startup.sh
 
+RUN sed -i 's/^Listen 80$/Listen 8080/' /etc/httpd/conf/httpd.conf
+RUN sed -i 's/^<VirtualHost \*:80>$/<VirtualHost \*:8080>/' /etc/httpd/conf/httpd.conf
+
 # Expose port 80
 EXPOSE 80
 
